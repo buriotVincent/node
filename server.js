@@ -1,11 +1,18 @@
 var http = require('http');
 var url = require('url');
+var querystring = require('querystring');
 
 var server = http.createServer(function(req, res) {
-    var page = url.parse(req.url).pathname;
-    console.log(page);
+    var params = querystring.parse(url.parse(req.url).query);
+    if ('prenom' in params && 'nom' in params) {
+        res.writeHead(200, {"Content-Type": "text/html"});
+        res.write('Prenom: ' + params['prenom'] + '\nNom: ' + params['nom']);
+    } else {
+        res.writeHead(200, {"Content-Type": "text/html"});
+        res.write('Quels sont vos nom et prénom ?');
+    }
 
-    if (page == '/') {
+    /*if (page == '/') {
         res.writeHead(200, {"Content-Type": "text/html"});
         res.write('Vous êtes à l\'accueil, que puis-je faire pour vous ?');
     } else if (page == '/sous-sol') {
@@ -17,7 +24,7 @@ var server = http.createServer(function(req, res) {
     } else {
         res.writeHead(404, {"Content-Type": "text/html"});
         res.write('Cette page n\'existe pas');
-    }
+    }*/
     /*res.write(
         '<!DOCTYPE html>' +
         '<html>' +
