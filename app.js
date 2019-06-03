@@ -1,1 +1,4 @@
-console.log('coucou2');
+var monmodule = require('./monmodule');
+
+monmodule.direBonjour();
+monmodule.direAurevoir();
