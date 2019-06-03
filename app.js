@@ -1,5 +1,7 @@
+let http = require('http');
 
-request('http://www.site.com/fichier.zip', function (error, response, body) {
-    console.log("Fichier téléchargé !");
+let server = http.createServer(function (req, res) {
+    res.writeHead(200);
+    res.end('Salut tout le monde !');
 });
-console.log("Je fais d'autres choses en attendant...");
+server.listen(8080);
